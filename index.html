@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>Orbit Builder</title>
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700" rel="stylesheet">
+
+		<style>
+			* { box-sizing: border-box; }
+
+			html { overflow: hidden; }
+
+			body {
+				margin: 0;
+				padding: 0;
+				overflow: hidden;
+				font-family: Arial, sans-serif;
+				font-size: 13px;
+				line-height: 20px;
+				color: #fff;
+				background: #000;
+				font-family: 'Source Sans Pro', sans-serif;
+			}
+
+			#options {
+				position: absolute;
+				top: 0;
+				left: 0;
+				padding: 20px;
+
+				width: 480px;
+			}
+
+			label {
+				font-weight: bold;
+			}
+
+			.accordion .btn-link {
+				color: #fff;
+			}
+
+			.color {
+				width: 40px;
+				height: 40px;
+				border-radius: 4px;
+				border: 2px solid #111;
+				box-shadow: 0 0 6px rgba(0,0,0,0.7) inset;
+				cursor: pointer;
+			}
+
+			.color.selected {
+				border-color: #eee;
+			}
+		</style>
+
+	</head>
+
+	<body>
+
+		<div id="container"></div>
+
+		<div id="options">
+			<h1>Orbit Builder</h1>
+
+			<!-- <form>
+				<div class="form-group">
+					<label for="model">Orbit Model</label>
+					<select class="custom-select" id="model">
+						<option>FL-3</option>
+						<option>Love-4</option>
+						<option>FL-5</option>
+						<option>eLite-4</option>
+						<option>X-type Oreo</option>
+						<option>eLite-3</option>
+						<option>Nano-6</option>
+						<option>eLite-5</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="cutomization">Customization</label>
+					<select class="custom-select" id="cutomization">
+						<option>Tracer</option>
+						<option>Oreo</option>
+						<option>Solid</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="topColor">Top Color</label>
+					<select class="custom-select" id="topColor">
+						<option>Translucent Red</option>
+						<option>Translucent Orange</option>
+						<option>Translucent Neon Yellow</option>
+						<option>Translucent Green</option>
+						<option>Translucent Blue</option>
+						<option>Teal</option>
+						<option>Blue</option>
+						<option>Light Blue</option>
+						<option>Purple</option>
+						<option>Neon Pink</option>
+						<option>Light Pink</option>
+						<option>Red</option>
+						<option>Neon Green</option>
+						<option>Green</option>
+						<option>Orange</option>
+						<option>White</option>
+						<option selected="selected">Black</option>
+						<option>Clear</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="tracerTopColor">Tracer Top Color</label>
+					<select class="custom-select" id="tracerTopColor">
+						<option>Translucent Red</option>
+						<option>Translucent Orange</option>
+						<option>Translucent Neon Yellow</option>
+						<option>Translucent Green</option>
+						<option>Translucent Blue</option>
+						<option>Teal</option>
+						<option>Blue</option>
+						<option>Light Blue</option>
+						<option>Purple</option>
+						<option>Neon Pink</option>
+						<option>Light Pink</option>
+						<option>Red</option>
+						<option>Neon Green</option>
+						<option>Green</option>
+						<option>Orange</option>
+						<option>White</option>
+						<option selected="selected">Black</option>
+						<option>Clear</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="bottomColor">Bottom Color</label>
+					<select class="custom-select" id="bottomColor">
+						<option>Translucent Red</option>
+						<option>Translucent Orange</option>
+						<option>Translucent Neon Yellow</option>
+						<option>Translucent Green</option>
+						<option>Translucent Blue</option>
+						<option>Teal</option>
+						<option>Blue</option>
+						<option>Light Blue</option>
+						<option>Purple</option>
+						<option>Neon Pink</option>
+						<option>Light Pink</option>
+						<option>Red</option>
+						<option>Neon Green</option>
+						<option>Green</option>
+						<option>Orange</option>
+						<option>White</option>
+						<option selected="selected">Black</option>
+						<option>Clear</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="tracerBottomColor">Tracer Bottom Color</label>
+					<select class="custom-select" id="tracerBottomColor">
+						<option>Translucent Red</option>
+						<option>Translucent Orange</option>
+						<option>Translucent Neon Yellow</option>
+						<option>Translucent Green</option>
+						<option>Translucent Blue</option>
+						<option>Teal</option>
+						<option>Blue</option>
+						<option>Light Blue</option>
+						<option>Purple</option>
+						<option>Neon Pink</option>
+						<option>Light Pink</option>
+						<option>Red</option>
+						<option>Neon Green</option>
+						<option>Green</option>
+						<option>Orange</option>
+						<option>White</option>
+						<option selected="selected">Black</option>
+						<option>Clear</option>
+					</select>
+				</div>
+			</form> -->
+
+			<div class="accordion" id="accordion">
+				<div class="card text-white bg-dark">
+					<div class="card-header" id="headingOne">
+						<h5 class="mb-0">
+							<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+								1. Orbit Model
+							</button>
+						</h5>
+					</div>
+
+					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+						<div class="card-body">
+
+							<div class="row">
+								<div class="col-sm-6">
+
+									<ul class="list-unstyled">
+
+										<li class="media">
+											<img class="mr-3" src="images/model/FL3.png" alt="FL3" style="width: 50px; height: auto;">
+											<div class="media-body">
+												<h5 class="mt-0">FL-3</h5>
+												$40.00
+											</div>
+										</li>
+
+										<li class="media my-4">
+											<img class="mr-3" src="images/model/love4.png" alt="Love-4" style="width: 50px; height: auto;">
+											<div class="media-body">
+												<h5 class="mt-0">Love-4</h5>
+												$40.00
+											</div>
+										</li>
+
+										<li class="media my-4">
+											<img class="mr-3" src="images/model/FL5.png" alt="FL-5" style="width: 50px; height: auto;">
+											<div class="media-body">
+												<h5 class="mt-0">FL-5</h5>
+												$45.00
+											</div>
+										</li>
+
+										<li class="media my-4">
+											<img class="mr-3" src="images/model/eLite4.png" alt="eLite-4" style="width: 50px; height: auto;">
+											<div class="media-body">
+												<h5 class="mt-0">eLite-4</h5>
+												$40.00
+											</div>
+										</li>
+
+									</ul>
+									
+								</div>
+								<div class="col-sm-6">
+
+									<ul class="list-unstyled">
+
+										<li class="media">
+											<img class="mr-3" src="images/model/xtype.png" alt="X-type Oreo" style="width: 50px; height: auto;">
+											<div class="media-body">
+												<h5 class="mt-0">X-type Oreo</h5>
+												$60.00
+											</div>
+										</li>
+
+										<li class="media my-4">
+											<img class="mr-3" src="images/model/eLite3.png" alt="eLite-3" style="width: 50px; height: auto;">
+											<div class="media-body">
+												<h5 class="mt-0">eLite-3</h5>
+												$40.00
+											</div>
+										</li>
+
+										<li class="media my-4">
+											<img class="mr-3" src="images/model/nano6.png" alt="Nano-6" style="width: 50px; height: auto;">
+											<div class="media-body">
+												<h5 class="mt-0">Nano-6</h5>
+												$50.00
+											</div>
+										</li>
+
+										<li class="media">
+											<img class="mr-3" src="images/model/eLite5.png" alt="FL3" style="width: 50px; height: auto;">
+											<div class="media-body">
+												<h5 class="mt-0">eLite-5</h5>
+												$45.00
+											</div>
+										</li>
+
+									</ul>
+									
+								</div>
+							</div>
+								
+						</div>
+					</div>
+				</div>
+				<div class="card text-white bg-dark">
+					<div class="card-header" id="headingTwo">
+						<h5 class="mb-0">
+							<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+								2. Customization
+							</button>
+						</h5>
+					</div>
+					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+						<div class="card-body">
+
+							<ul class="list-unstyled">
+
+								<li class="media">
+									<img class="mr-3" src="images/customization/tracer.png" alt="Tracer" style="width: 50px; height: auto;">
+									<div class="media-body">
+										<h5 class="mt-0">Tracer</h5>
+										$40.00
+									</div>
+								</li>
+
+								<li class="media my-4">
+									<img class="mr-3" src="images/customization/oreo.png" alt="Oreo" style="width: 50px; height: auto;">
+									<div class="media-body">
+										<h5 class="mt-0">Oreo</h5>
+										$20.00
+									</div>
+								</li>
+
+								<li class="media">
+									<img class="mr-3" src="images/customization/solid.png" alt="Solid" style="width: 50px; height: auto;">
+									<div class="media-body">
+										<h5 class="mt-0">Solid</h5>
+										$0.00
+									</div>
+								</li>
+
+							</ul>
+
+						</div>
+					</div>
+				</div>
+				<div class="card text-white bg-dark">
+					<div class="card-header" id="headingThree">
+						<h5 class="mb-0">
+							<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+								3. Top Color
+							</button>
+						</h5>
+					</div>
+					<div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordion">
+						<div class="card-body">
+							<div class="row" id="top-color">
+								<div class="col-sm-2"><div class="color my-2" style="background-color: rgba(255,255,0,0.3);" title="Translucent Neon Yellow"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: rgba(0,255,0,0.3);" title="Translucent Green"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: rgba(0,0,255,0.3);" title="Translucent Blue"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: rgba(255,0,0,0.3);" title="Translucent Red"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: rgba(255,125,0,0.3);" title="Translucent Orange"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: teal;" title="Teal"></div></div>
+								<div class="col-sm-2"><div class="color my-2 selected" style="background-color: rgb(14,70,161);" title="Blue"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: lightblue;" title="Light Blue"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: purple;" title="Purple"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: hotpink;" title="Neon Pink"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: lightpink;" title="Light Pink"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: red;" title="Red"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: limegreen;" title="Neon Green"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: green;" title="Green"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: orange;" title="Orange"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: rgba(255,255,255,0.2);" title="Clear"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: white;" title="White"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: black;" title="Black"></div></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card text-white bg-dark">
+					<div class="card-header" id="headingFour">
+						<h5 class="mb-0">
+							<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+								4. Tracer Top Color
+							</button>
+						</h5>
+					</div>
+					<div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+						<div class="card-body">
+							<div class="row" id="tracer-top-color">
+								<div class="col-sm-2"><div class="color my-2" style="background-color: rgba(255,255,0,0.3);" title="Translucent Neon Yellow"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: rgba(0,255,0,0.3);" title="Translucent Green"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: rgba(0,0,255,0.3);" title="Translucent Blue"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: rgba(255,0,0,0.3);" title="Translucent Red"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: rgba(255,125,0,0.3);" title="Translucent Orange"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: teal;" title="Teal"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: rgb(14,70,161);" title="Blue"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: lightblue;" title="Light Blue"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: purple;" title="Purple"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: hotpink;" title="Neon Pink"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: lightpink;" title="Light Pink"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: red;" title="Red"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: limegreen;" title="Neon Green"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: green;" title="Green"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: orange;" title="Orange"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: rgba(255,255,255,0.2);" title="Clear"></div></div>
+								<div class="col-sm-2"><div class="color my-2 selected" style="background-color: white;" title="White"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: black;" title="Black"></div></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card text-white bg-dark">
+					<div class="card-header" id="headingFive">
+						<h5 class="mb-0">
+							<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+								5. Bottom Color
+							</button>
+						</h5>
+					</div>
+					<div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+						<div class="card-body">
+							<div class="row" id="bottom-color">
+								<div class="col-sm-2"><div class="color my-2" style="background-color: rgba(255,255,0,0.3);" title="Translucent Neon Yellow"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: rgba(0,255,0,0.3);" title="Translucent Green"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: rgba(0,0,255,0.3);" title="Translucent Blue"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: rgba(255,0,0,0.3);" title="Translucent Red"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: rgba(255,125,0,0.3);" title="Translucent Orange"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: teal;" title="Teal"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: rgb(14,70,161);" title="Blue"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: lightblue;" title="Light Blue"></div></div>
+								<div class="col-sm-2"><div class="color my-2 selected" style="background-color: purple;" title="Purple"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: hotpink;" title="Neon Pink"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: lightpink;" title="Light Pink"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: red;" title="Red"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: limegreen;" title="Neon Green"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: green;" title="Green"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: orange;" title="Orange"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: rgba(255,255,255,0.2);" title="Clear"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: white;" title="White"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: black;" title="Black"></div></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card text-white bg-dark">
+					<div class="card-header" id="headingSix">
+						<h5 class="mb-0">
+							<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+								6. Tracer Bottom Color
+							</button>
+						</h5>
+					</div>
+					<div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+						<div class="card-body">
+							<div class="row" id="tracer-bottom-color">
+								<div class="col-sm-2"><div class="color my-2" style="background-color: rgba(255,255,0,0.3);" title="Translucent Neon Yellow"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: rgba(0,255,0,0.3);" title="Translucent Green"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: rgba(0,0,255,0.3);" title="Translucent Blue"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: rgba(255,0,0,0.3);" title="Translucent Red"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: rgba(255,125,0,0.3);" title="Translucent Orange"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: teal;" title="Teal"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: rgb(14,70,161);" title="Blue"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: lightblue;" title="Light Blue"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: purple;" title="Purple"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: hotpink;" title="Neon Pink"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: lightpink;" title="Light Pink"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: red;" title="Red"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: limegreen;" title="Neon Green"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: green;" title="Green"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: orange;" title="Orange"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: rgba(255,255,255,0.2);" title="Clear"></div></div>
+								<div class="col-sm-2"><div class="color my-2 selected" style="background-color: white;" title="White"></div></div>
+								<div class="col-sm-2"><div class="color my-2" style="background-color: black;" title="Black"></div></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<script src="https://cdn.rawgit.com/mrdoob/three.js/r91/build/three.js"></script>
+		<script src="https://cdn.rawgit.com/mrdoob/three.js/r91/examples/js/controls/OrbitControls.js"></script>
+		<script src="https://cdn.rawgit.com/mrdoob/three.js/r91/examples/js/Detector.js"></script>
+		<script src="https://cdn.rawgit.com/mrdoob/three.js/r91/examples/js/loaders/FBXLoader.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.0-0/dat.gui.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.1.1/Tween.min.js"></script>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+		<script>
+
+			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+
+			// var gui = new dat.GUI();
+
+			var container = document.getElementById( 'container' );
+
+			var renderer = new THREE.WebGLRenderer( { antialias: true } );
+			renderer.setClearColor( 0x111111, 1 );
+			renderer.setPixelRatio( window.devicePixelRatio );
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			container.appendChild( renderer.domElement );
+
+			var camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, .1, 100000 );
+			camera.position.set( 0, 0, 1.1 );
+
+			var controls = new THREE.OrbitControls( camera, renderer.domElement );
+			controls.enablePan = false;
+			controls.enableZoom = false;
+			controls.enableDamping = true;
+			controls.dampingFactor = 0.3;
+
+			var scene = new THREE.Scene();
+
+			// ------------------------------------------------------------
+
+			// lights
+
+			var aLight = new THREE.AmbientLight( 0x777777 );
+			scene.add( aLight );
+
+			var dLight1 = new THREE.DirectionalLight( 0xffffff, 0.8 );
+			dLight1.position.set( 0.4, 0, 1 );
+			scene.add( dLight1 );
+
+			var dLight2 = new THREE.DirectionalLight( 0xffffff, 0.8 );
+			dLight2.position.set( -0.4, 0, -1 );
+			scene.add( dLight2 );
+
+			// var dlh1 = new THREE.DirectionalLightHelper( dLight1, 0.5 );
+			// scene.add( dlh1 );
+
+			// var dlh2 = new THREE.DirectionalLightHelper( dLight2, 0.5 );
+			// scene.add( dlh2 );
+
+			// ------------------------------------------------------------
+
+			$('.color').tooltip();
+
+			// ------------------------------------------------------------
+
+			var fbxLoader = new THREE.FBXLoader();
+
+			fbxLoader.load('models/nano6.fbx', function(fbx){
+				var nano6 = fbx.children[0];
+
+				var bodyTop = nano6.getObjectByName('bodyTop');
+				var tracerTop = nano6.getObjectByName('tracerTop');
+				var tracerBottom = nano6.getObjectByName('tracerBottom');
+				var bodyBottom = nano6.getObjectByName('bodyBottom');
+
+				var colorChange = function(part){
+					return function(e) {
+						e.preventDefault();
+
+						$(this).parent().parent().find('.color.selected').removeClass('selected');
+						$(this).addClass('selected');
+
+						var color = $(this).css('background-color');
+						part.material.color.setStyle( color );
+
+						var rgba = color.match(/[.?\d]+/g);
+						var alpha = rgba[3];
+
+						if ( alpha && alpha < 1 ) {
+							part.material.transparent = true;
+							part.material.opacity = 0.5;
+						} else {
+							part.material.transparent = false;
+							part.material.opacity = 1;
+						}
+					}
+				};
+
+				$('#top-color .color').click( colorChange(bodyTop) );
+				$('#tracer-top-color .color').click( colorChange(tracerTop) );
+				$('#bottom-color .color').click( colorChange(bodyBottom) );
+				$('#tracer-bottom-color .color').click( colorChange(tracerBottom) );
+
+				scene.add( nano6 );
+			});
+
+			// ------------------------------------------------------------
+
+			window.addEventListener( 'resize', resize, false );
+
+			function resize() {
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+			}
+
+			loop();
+
+			function loop() {
+				requestAnimationFrame( loop );
+				// TWEEN.update();
+				controls.update();
+				renderer.render( scene, camera );
+			}
+
+			function tweenProp( obj, prop, targetValue ) {
+				var target = {};
+				target[prop] = targetValue;
+
+				var tween = new TWEEN.Tween( obj )
+					.to( target, 800 )
+					.easing( TWEEN.Easing.Elastic.Out )
+					.yoyo( true )
+					.delay( 800 )
+					.repeat( Infinity )
+					.start();
+			}
+
+		</script>
+
+	</body>
+</html>
