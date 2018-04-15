@@ -1,0 +1,45 @@
+* { box-sizing: border-box; }
+
+html { overflow: hidden; }
+
+body {
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	font-family: Arial, sans-serif;
+	font-size: 13px;
+	line-height: 20px;
+	color: #fff;
+	background: #000;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+#options {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 20px;
+
+	width: 480px;
+}
+
+label {
+	font-weight: bold;
+}
+
+.accordion .btn-link {
+	color: #fff;
+}
+
+.color {
+	width: 40px;
+	height: 40px;
+	border-radius: 4px;
+	border: 2px solid #111;
+	box-shadow: 0 0 6px rgba(0,0,0,0.7) inset;
+	cursor: pointer;
+
+	&.selected {
+		border-color: #eee;
+	}
+}
